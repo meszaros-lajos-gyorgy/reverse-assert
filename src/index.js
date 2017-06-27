@@ -4,6 +4,7 @@ const int = require('./datas/int')
 const nonZeroInt = require('./datas/nonZeroInt')
 const nonZeroPositiveInt = require('./datas/nonZeroPositiveInt')
 const boolWithNullArray = require('./datas/boolWithNullArray')
+const prime = require('./datas/prime')
 
 const assert = require('assert')
 
@@ -30,5 +31,6 @@ module.exports = {
   int,
   nonZeroInt,
   nonZeroPositiveInt,
-  boolWithNullArray
+  boolWithNullArray,
+  prime
 }
