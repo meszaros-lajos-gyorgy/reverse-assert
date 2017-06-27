@@ -12,16 +12,38 @@ const {
   compose,
   forEach,
   toPairs,
-  curry
+  curry,
+  join,
+  addIndex,
+  map,
+  when,
+  always,
+  prepend
 } = require('ramda')
 
-const testWithType = curry((it, f, type, expected) => compose(
+var getMethodName = (deep = true, strict = false) => {
+  return compose(
+    join(''),
+    addIndex(map)((el, index) => {
+      if (index > 0) {
+        const [cap, ...rest] = el
+        return cap.toUpperCase() + rest.join('')
+      } else {
+        return el
+      }
+    }),
+    when(always(deep), prepend('deep')),
+    when(always(strict), prepend('strict'))
+  )(['equal'])
+}
+
+const testWithType = curry((it, f, type, expected, deep = false, strict = true) => compose(
   forEach(([name, value]) => {
     it(`returns ${expected}, when given parameter is ${name}`, () => {
       if (isNaN(expected)) {
-        assert.deepEqual(isNaN(f(value)), true)
+        assert.equal(isNaN(f(value)), true)
       } else {
-        assert.deepEqual(f(value), expected)
+        assert[getMethodName(deep, strict)](f(value), expected)
       }
     })
   }),
