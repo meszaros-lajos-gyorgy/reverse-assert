@@ -18,7 +18,11 @@ const {
 const testWithType = curry((it, f, type, expected) => compose(
   forEach(([name, value]) => {
     it(`returns ${expected}, when given parameter is ${name}`, () => {
-      assert.equal(f(value), expected)
+      if (isNaN(expected)) {
+        assert.deepEqual(isNaN(f(value)), true)
+      } else {
+        assert.deepEqual(f(value), expected)
+      }
     })
   }),
   toPairs
