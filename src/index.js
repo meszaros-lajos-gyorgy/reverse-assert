@@ -10,17 +10,18 @@ const assert = require('assert')
 const {
   compose,
   forEach,
-  toPairs
+  toPairs,
+  curry
 } = require('ramda')
 
-const testWithType = it => (f, type, expected) => compose(
+const testWithType = curry((it, f, type, expected) => compose(
   forEach(([name, value]) => {
     it(`returns ${expected}, when given parameter is ${name}`, () => {
       assert.equal(f(value), expected)
     })
   }),
   toPairs
-)(type)
+)(type))
 
 module.exports = {
   testWithType,
