@@ -1,0 +1,45 @@
+{
+  "title": "Reverse assert",
+  "name": "reverse-assert",
+  "version": "0.0.0-development",
+  "description": "Test parameters of a complex function by checking the opposite of the expected type.",
+  "main": "src/index.js",
+  "scripts": {
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "commit": "git-cz",
+    "commit:again": "git-cz --retry",
+    "lint": "standard --verbose --fix src/**/*.js",
+    "stage-after-lint": "git add src",
+    "test": "npm run lint"
+  },
+  "pre-commit": [
+    "test",
+    "stage-after-lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meszaros-lajos-gyorgy/reverse-assert.git"
+  },
+  "keywords": [],
+  "author": "Lajos Meszaros <m_lajos@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meszaros-lajos-gyorgy/reverse-assert/issues"
+  },
+  "homepage": "https://github.com/meszaros-lajos-gyorgy/reverse-assert#readme",
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "cz-conventional-changelog": "^2.0.0",
+    "pre-commit": "^1.2.2",
+    "semantic-release": "^6.3.6",
+    "standard": "^10.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}
